@@ -1,10 +1,54 @@
-.App {
-  text-align: center;
+nav {
+  background-color: lightblue;
+  /* padding: 2vh; */
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a {
+  text-decoration: none;
+  font-weight: bolder;
+  padding: 10px;
+}
+img {
+  border-radius: 50%;
+  width: 35px;
+  display: inline;
+  margin: 5px 5px 0px 25px;
+}
+.footer {
+  text-align: center;
+  position: absolute;
+  padding: 3vh;
+  background-color: lightblue;
+  width: 100vw;
+}
+.register {
+  margin-left: 25vw;
+}
+input {
+  display: block;
+  margin: 2%;
+  padding: 2%;
+  width: 50%;
+}
+button {
+  margin: 2%;
+  background: lightblue;
+  width: 20vw;
+  padding: 10px;
+}
+span {
+  margin-top: -2%;
+  display: block;
+  margin-left: 2%;
+  color: red;
+}
+ul {
+  margin: 0;
+}
+li {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid lightblue;
+  width: 150px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
