@@ -11,7 +11,7 @@ export default function UpdateProduct() {
 
   useEffect(() => {
     getData();
-  }, []);
+  });
 
   const getData = async () => {
     const response = await fetch(`http://localhost:3001/product/${params.id}`);
@@ -28,7 +28,7 @@ export default function UpdateProduct() {
   };
 
   const handleUpdate = async () => {
-    const response = await fetch(`http://localhost:3001/product/${params.id}`, {
+    await fetch(`http://localhost:3001/product/${params.id}`, {
       method: "put",
       body: JSON.stringify({ name, price, category, userId }),
       headers: { "Content-Type": "application/json" },
