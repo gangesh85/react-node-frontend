@@ -19,37 +19,35 @@ export function Login() {
       body: JSON.stringify({ email, password }),
       headers: { "content-type": "application/json" },
     });
-    const userData = await response.json();
-    if (userData.name) {
-      const user = JSON.stringify(userData);
+    
+    let userData = await response.json();
+    let user = JSON.stringify(userData.user);
+    if (userData.auth) {
       localStorage.setItem("user", user);
+      localStorage.setItem("token", userData.auth);
       navigate("/");
-    } else {
-      alert("Please enter correct details.");
     }
   };
 
   return (
     <div className="register">
       <h2>Login Page</h2>
-      <form>
-        <input
-          type="text"
-          id="email"
-          placeholder="Enter Email"
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter Password"
-          onChange={(event) => setPassword(event.target.value)}
-        />
-        <button onClick={handleLogin}>login</button>
-        <p>
-          Don't have account.<Link to="/signup">Signup</Link>
-        </p>
-      </form>
+      <input
+        type="text"
+        id="email"
+        placeholder="Enter Email"
+        onChange={(event) => setEmail(event.target.value)}
+      />
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter Password"
+        onChange={(event) => setPassword(event.target.value)}
+      />
+      <button onClick={handleLogin}>login</button>
+      <p>
+        Don't have account.<Link to="/signup">Signup</Link>
+      </p>
     </div>
   );
 }

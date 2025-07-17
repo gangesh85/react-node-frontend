@@ -23,9 +23,12 @@ export default function AddProduct() {
     await fetch("http://localhost:3001/addproduct", {
       method: "Post",
       body: JSON.stringify({ name, price, category, userId }),
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.getItem("token"),
+      },
     });
-    alert('Item added successfully.')
+    alert("Item added successfully.");
     navigate("/");
   };
 
@@ -39,35 +42,33 @@ export default function AddProduct() {
   return (
     <>
       <h2>Add Product</h2>
-      <form>
-        <input
-          type="text"
-          id="productName"
-          placeholder="Enter Product Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        {error && !name && <span>Enter name</span>}
-        <input
-          type="text"
-          id="productCost"
-          placeholder="Enter Product cost/kg"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-        {error && !price && <span>Enter Price</span>}
-        <input
-          type="text"
-          id="productCategory"
-          placeholder="Enter Product Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        />
-        {error && !category && <span>Enter category</span>}
-        <button onClick={handleSubmit}>Add</button>
-        {"\t"}
-        <button onClick={handleReset}>Reset</button>
-      </form>
+      <input
+        type="text"
+        id="productName"
+        placeholder="Enter Product Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      {error && !name && <span>Enter name</span>}
+      <input
+        type="text"
+        id="productCost"
+        placeholder="Enter Product cost/kg"
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+      />
+      {error && !price && <span>Enter Price</span>}
+      <input
+        type="text"
+        id="productCategory"
+        placeholder="Enter Product Category"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      />
+      {error && !category && <span>Enter category</span>}
+      <button onClick={handleSubmit}>Add</button>
+      {"\t"}
+      <button onClick={handleReset}>Reset</button>
     </>
   );
 }

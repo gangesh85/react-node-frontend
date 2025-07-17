@@ -10,11 +10,15 @@ export default function UpdateProduct() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    setUserId(user.email);
     getData();
-  });
+  },[]);
 
   const getData = async () => {
-    const response = await fetch(`http://localhost:3001/product/${params.id}`);
+    const response = await fetch(`http://localhost:3001/product/${params.id}`, {
+      headers: { authorization: localStorage.getItem("token") },
+    });
     const data = await response.json();
     setName(data.name);
     setPrice(data.price);
@@ -31,10 +35,11 @@ export default function UpdateProduct() {
     await fetch(`http://localhost:3001/product/${params.id}`, {
       method: "put",
       body: JSON.stringify({ name, price, category, userId }),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      },
     });
-    const user = JSON.parse(localStorage.getItem("user"));
-    setUserId(user.email);
     alert("Update Success.");
     navigate("/");
   };
@@ -42,7 +47,6 @@ export default function UpdateProduct() {
   return (
     <>
       <h2>Update Product</h2>
-      {/* <form> */}
       <input
         type="text"
         id="productName"
@@ -67,7 +71,6 @@ export default function UpdateProduct() {
       <button onClick={handleUpdate}>Update</button>
       {"\t"}
       <button onClick={handleReset}>Reset</button>
-      {/* </form> */}
     </>
   );
 }

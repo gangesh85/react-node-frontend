@@ -1,9 +1,9 @@
 export default function Profile() {
-  const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user)
+  let userData = JSON.parse(localStorage.getItem("user"));
+  console.log(userData)
   return (
     <>
-      <h3> Welcome, {user.name}</h3>
+      <h3> Welcome, {userData.name} you have signed.</h3>
     </>
   );
 }

@@ -21,43 +21,44 @@ export default function Signup() {
       headers: { "content-type": "application/json" },
     });
     let userData = await response.json();
-    const user = JSON.stringify(userData);
-    localStorage.setItem("user", user);
-    navigate("/");
+    let user = JSON.stringify(userData.user)
+    if (userData.auth) {
+      localStorage.setItem("user", user);
+      localStorage.setItem("token", userData.auth);
+      navigate("/");
+    }
   };
 
   return (
     <div className="register">
       <h2>Register</h2>
-      <form>
-        <input
-          type="text"
-          id="name"
-          placeholder="Enter Name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-        />
-        <input
-          type="text"
-          id="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        <input
-          type="password"
-          id="passowrd"
-          placeholder="Enter Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-        <button type="button" onClick={handleSignup}>
-          Signup
-        </button>
-        <p>
-          already have an account. <Link to="/login">Login</Link>
-        </p>
-      </form>
+      <input
+        type="text"
+        id="name"
+        placeholder="Enter Name"
+        value={name}
+        onChange={(event) => setName(event.target.value)}
+      />
+      <input
+        type="text"
+        id="email"
+        placeholder="Enter Email"
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+      />
+      <input
+        type="password"
+        id="passowrd"
+        placeholder="Enter Password"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      />
+      <button type="button" onClick={handleSignup}>
+        Signup
+      </button>
+      <p>
+        already have an account. <Link to="/login">Login</Link>
+      </p>
     </div>
   );
 }

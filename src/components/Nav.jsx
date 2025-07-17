@@ -14,7 +14,6 @@ export default function Nav() {
   const auth = localStorage.getItem("user");
 
   const logout = () => {
-    console.log("Logout.");
     localStorage.clear();
     navigate("/signup");
   };
